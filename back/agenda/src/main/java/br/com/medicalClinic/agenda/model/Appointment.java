@@ -1,5 +1,6 @@
 package br.com.medicalClinic.agenda.model;
 
+import br.com.medicalClinic.agenda.enums.AppointmentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,5 @@ public class Appointment extends Base{
     private Office office;
     private LocalDateTime dateTime;
 
-    private String status;
+    private AppointmentStatus status;
 }
