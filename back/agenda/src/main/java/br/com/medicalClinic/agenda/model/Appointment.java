@@ -1,10 +1,21 @@
 package br.com.medicalClinic.agenda.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Appointment {
+@Table(name = "CONSULTAS")
+public class Appointment extends Base{
 
     private Pacient pacient;
     private Doctor doctor;
