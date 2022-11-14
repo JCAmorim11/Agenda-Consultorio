@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,12 +15,18 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "MEDICOS")
-public class Doctor extends Base {
+@Table(name = "tblMedicos")
+public class Doctor {
 
+    @Column(name="id")
+    private Long id;
+
+    @Column(name="nome")
     private String name;
 
+    @Column(name="CRM")
     private String CRM;
 
+    @Column(name="especialidade")
     private String specialty;
 }

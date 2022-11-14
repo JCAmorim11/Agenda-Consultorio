@@ -1,10 +1,7 @@
 package br.com.medicalClinic.agenda.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,12 +10,18 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "PACIENTES")
-public class Pacient extends Base{
+@Table(name = "tblPacientes")
+public class Pacient {
 
+    @Column(name="nome")
     private String name;
+
+    @Column(name="cpf")
     private String cpf;
+
+    @Column(name="telefone")
     private String telephone;
 
     @OneToMany(
