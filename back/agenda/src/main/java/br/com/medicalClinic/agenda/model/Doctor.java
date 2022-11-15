@@ -13,10 +13,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tblMedicos")
+@Table(name = "tblmedicos")
 public class Doctor {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

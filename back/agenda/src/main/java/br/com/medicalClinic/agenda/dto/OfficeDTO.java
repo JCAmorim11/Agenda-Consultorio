@@ -13,5 +13,4 @@ import java.util.List;
 public class OfficeDTO {
 
     private String number;
-    private List<AppointmentDTO> appointments;
 }

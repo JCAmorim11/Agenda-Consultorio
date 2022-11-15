@@ -4,7 +4,7 @@ spring:
   main:
     allow-circular-references: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/newLifeBD
+    url: jdbc:postgresql://localhost:5432/postgres
     username: rote
     password:
     driverClassName: org.postgresql.Driver

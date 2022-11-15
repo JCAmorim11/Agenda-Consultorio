@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "tblPacientes")
+@Table(name = "tblpacientes")
 public class Pacient {
 
     @Id

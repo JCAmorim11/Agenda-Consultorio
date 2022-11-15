@@ -14,23 +14,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tblConsultas")
+@Table(name = "tblconsultas")
 public class Appointment {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Pacient.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name="fk_paciente",nullable = false)
     private Pacient pacient;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Doctor.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name="fk_medico",nullable = false)
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Office.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name="fk_consultorio",nullable = false)
     private Office office;
 
