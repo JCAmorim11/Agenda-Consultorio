@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -18,7 +16,11 @@ import java.util.List;
 @Table(name = "tblConsultorios")
 public class Office {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
     @Column(name="numero_consultorio")
     private String number;
-    private List<Appointment> appointments;
+
 }

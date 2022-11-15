@@ -1,15 +1,12 @@
 package br.com.medicalClinic.agenda.model;
 
 
-import br.com.medicalClinic.agenda.enums.AppointmentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,17 +17,27 @@ import java.time.LocalDateTime;
 @Table(name = "tblConsultas")
 public class Appointment {
 
-    @Column()
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
+    @ManyToOne
+    @JoinColumn(name="fk_paciente",nullable = false)
     private Pacient pacient;
 
-    @Column()
+    @ManyToOne
+    @JoinColumn(name="fk_medico",nullable = false)
     private Doctor doctor;
-    @Column()
+
+    @ManyToOne
+    @JoinColumn(name="fk_consultorio",nullable = false)
     private Office office;
-    @Column()
+
+    @Column(name="data_consulta")
     private LocalDateTime dateTime;
 
     @Column(name="status")
-    private AppointmentStatus status;
+    private String status;
 }
 

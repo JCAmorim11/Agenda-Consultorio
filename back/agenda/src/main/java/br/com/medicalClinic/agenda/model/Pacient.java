@@ -15,6 +15,10 @@ import java.util.List;
 @Table(name = "tblPacientes")
 public class Pacient {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
     @Column(name="nome")
     private String name;
 
@@ -24,11 +28,5 @@ public class Pacient {
     @Column(name="telefone")
     private String telephone;
 
-    @OneToMany(
-        mappedBy = "usuario",
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.MERGE,
-        orphanRemoval = true
-    )
-    private List<Appointment> appointments;
+
 }

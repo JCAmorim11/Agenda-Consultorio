@@ -1,0 +1,26 @@
+spring:
+  flyway:
+    enabled: false
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/newLifeBD
+    username: rote
+    password:
+    driverClassName: org.postgresql.Driver
+    hikari:
+      maxLifeTime: 60000000
+  jpa:
+    open-in-view: false
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      namin1g:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: on-param
+file-root-path: upload
