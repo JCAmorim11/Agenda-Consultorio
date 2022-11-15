@@ -1,15 +1,13 @@
-package br.com.medicalClinic.agenda.resource;
+package br.com.medicalClinic.agenda.controller;
 
 
 import br.com.medicalClinic.agenda.dto.AppointmentDTO;
-import br.com.medicalClinic.agenda.model.Appointment;
 import br.com.medicalClinic.agenda.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostUpdate;
 import javax.transaction.Transactional;
 
 @RestController
@@ -32,9 +30,18 @@ public class ControllerAppointment extends ControllerBase<AppointmentDTO> {
     }
 
     @PutMapping("/atualizarConsulta")
-    public ResponseEntity<?> alterAppointment(){
-
-       return null;
+    @Transactional
+    public ResponseEntity<?> alterAppointment(@RequestBody AppointmentDTO dto){
+       this.appointmentService.updateAppointment(dto);
+       return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/cancelarConsulta")
+    @Transactional
+    public ResponseEntity<?> cancelAppointment(@RequestBody AppointmentDTO dto){
+        this.appointmentService.cancelAppointment(dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

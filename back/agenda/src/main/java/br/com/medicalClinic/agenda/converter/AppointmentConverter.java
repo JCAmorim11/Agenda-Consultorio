@@ -20,6 +20,7 @@ public class AppointmentConverter {
 
     public Appointment converterDtoToEntity(AppointmentDTO dto) {
         return Appointment.builder()
+                .appointmentNumber(dto.getAppointmentNumber())
                 .pacient(pacientConverter.converterDtoToEntity(dto.getPacient()))
                 .doctor(doctorConverter.converterDtoToEntity(dto.getDoctor()))
                 .office(officeConverter.converterDtoToEntity(dto.getOffice()))

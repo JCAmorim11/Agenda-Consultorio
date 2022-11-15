@@ -1,4 +1,4 @@
-package br.com.medicalClinic.agenda.resource;
+package br.com.medicalClinic.agenda.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

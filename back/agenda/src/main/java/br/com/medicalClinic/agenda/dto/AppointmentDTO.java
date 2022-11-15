@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Builder
 public class AppointmentDTO {
 
+    private Long appointmentNumber;
+
     private PacientDTO pacient;
 
     private DoctorDTO doctor;

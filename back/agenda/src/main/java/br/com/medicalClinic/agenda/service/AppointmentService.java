@@ -5,10 +5,13 @@ import br.com.medicalClinic.agenda.dto.AppointmentDTO;
 import br.com.medicalClinic.agenda.model.Appointment;
 import br.com.medicalClinic.agenda.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -25,7 +28,24 @@ public class AppointmentService {
 
     }
 
-    public void alterAppointment(){
+    public void updateAppointment(AppointmentDTO dto){
+        Optional<Appointment> appointment = this.repository.findByAppointmentNumber(dto.getAppointmentNumber());
+        if(appointment.isPresent()) {
+            appointment.get().updateRegistry(dto);
+            this.repository.save(appointment.get());
+            return;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "não foi achado uma consulta correspondente");
+
+    }
+    public void cancelAppointment(AppointmentDTO dto){
+        Optional<Appointment> appointment = this.repository.findByAppointmentNumber(dto.getAppointmentNumber());
+        if(appointment.isPresent()) {
+            appointment.get().setStatus("CANCELADA");
+            this.repository.save(appointment.get());
+            return;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "não foi achado uma consulta correspondente");
 
     }
 
