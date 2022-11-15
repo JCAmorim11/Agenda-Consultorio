@@ -24,5 +24,4 @@ public class PacientDTO {
 
     private String telephone;
 
-    private List<AppointmentDTO> appointments;
 }

@@ -9,9 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
@@ -55,6 +61,23 @@ public class AppointmentService {
        for(Appointment consulta: list){
            returnList.add(appointmentConverter.converterEntityToDTO(consulta));
        }
-       return returnList;
+       return sortDates(returnList);
+    }
+
+    public List<AppointmentDTO> sortDates(List<AppointmentDTO> appointments){
+        return appointments.stream().sorted(Comparator.comparing(AppointmentDTO::getDateTime, Comparator.nullsLast(Comparator.naturalOrder()))).collect(Collectors.toList());
+    }
+
+    public List<AppointmentDTO> findSameDate(LocalDate date){
+       return null;
+
+    }
+    public List<AppointmentDTO> findSameDate(LocalDate date, LocalTime time){
+        return null;
+    }
+
+    public static boolean isSameDay(LocalDateTime appointmentDate, LocalDateTime timestampToCompare) {
+        return appointmentDate.truncatedTo(ChronoUnit.DAYS)
+                .isEqual(timestampToCompare.truncatedTo(ChronoUnit.DAYS));
     }
 }
