@@ -69,15 +69,43 @@ public class AppointmentService {
     }
 
     public List<AppointmentDTO> findSameDate(LocalDate date){
-       return null;
+       List<Appointment> appointments = this.repository.findAll();
+       List<AppointmentDTO> dto = new ArrayList<>();
+       for(Appointment appointment: appointments){
+           dto.add(appointmentConverter.converterEntityToDTO(appointment));
+       }
+       List<AppointmentDTO> dtoSort = new ArrayList<>();
+       for(AppointmentDTO apnt: dto){
+           if(isSameDay(apnt.getDateTime(), date)){
+               dtoSort.add(apnt);
+           }
+       }
+       return dtoSort;
 
     }
     public List<AppointmentDTO> findSameDate(LocalDate date, LocalTime time){
-        return null;
+        LocalDateTime dt = LocalDateTime.of(date, time);
+        List<Appointment> appointments = this.repository.findAll();
+        List<AppointmentDTO> dto = new ArrayList<>();
+        for(Appointment appointment: appointments){
+            dto.add(appointmentConverter.converterEntityToDTO(appointment));
+        }
+        List<AppointmentDTO> dtoSort = new ArrayList<>();
+        for(AppointmentDTO apnt: dto){
+           if(isSameDaytime(apnt.getDateTime(), dt)){
+               dtoSort.add(apnt);
+           }
+        }
+        return dtoSort;
+
     }
 
-    public static boolean isSameDay(LocalDateTime appointmentDate, LocalDateTime timestampToCompare) {
+    public static boolean isSameDaytime(LocalDateTime appointmentDate, LocalDateTime timestampToCompare) {
         return appointmentDate.truncatedTo(ChronoUnit.DAYS)
                 .isEqual(timestampToCompare.truncatedTo(ChronoUnit.DAYS));
+    }
+
+    public static boolean isSameDay(LocalDateTime appointmentDate, LocalDate givenDate) {
+        return appointmentDate.toLocalDate().isEqual(givenDate);
     }
 }

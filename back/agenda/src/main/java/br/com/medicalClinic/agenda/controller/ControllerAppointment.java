@@ -22,18 +22,19 @@ public class ControllerAppointment extends ControllerBase<AppointmentDTO> {
     @Autowired
     AppointmentService appointmentService;
 
-    @Autowired
-    RestControllerAdviceException exception;
 
    @GetMapping("/all")
-    public ResponseEntity<?> getAllAppointments(@RequestParam(required = false) Optional<LocalDate> date, @RequestParam Optional<LocalTime> time){
+    public ResponseEntity<?> getAllAppointments(@RequestParam(required = false) Optional<String> date, @RequestParam(required = false) Optional<String> time){
        if(date.isPresent() && time.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(this.appointmentService.findSameDate(date.get(),time.get()));
+            LocalDate datePart = LocalDate.parse(date.get());
+            LocalTime timePart = LocalTime.parse(time.get());
+            return ResponseEntity.status(HttpStatus.OK).body(this.appointmentService.findSameDate(datePart,timePart));
        }
        else if(date.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(this.appointmentService.findSameDate(date.get()));
+            LocalDate datePart = LocalDate.parse(date.get());
+            return ResponseEntity.status(HttpStatus.OK).body(this.appointmentService.findSameDate(datePart));
        }
-       else if (time.isPresent())return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBadRequest());
+       else if (!date.isPresent() && time.isPresent())return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBadRequest());
        return ResponseEntity.status(HttpStatus.OK).body(this.appointmentService.listAppointments());
     }
 
