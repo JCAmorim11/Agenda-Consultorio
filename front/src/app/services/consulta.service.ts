@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class ConsultaServiceService {
+export class ConsultaService {
   constructor(private httpClient: HttpClient) {}
 
   findAll() {

@@ -1,10 +1,65 @@
-<p>consultas works!</p>
+<h1>CONSULTA WORKS</h1>
 
 <div class="container">
-  <table class="table table-striped">
-    <thead></thead>
-    <tbody>
-      <tr *ngFor="let consulta of consultas"></tr>
-    </tbody>
-  </table>
+  <div class="tableForm">
+    <table mat-table [dataSource]="dataTable" aria-describedby="consultas">
+      <ng-container matColumnDef="numeroConsulta">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> Nome </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="paciente">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> cpf </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.paciente }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="medico">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> rg </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.medico }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="consultorio">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> email </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.consultorio }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dataHora">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> Telefone 1 </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.dataHora }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header"> Telefone 2 </span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.status }}</td>
+      </ng-container>
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="table-header">Atualizar</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <!--   <button
+            mat-icon-button
+            [style.display]="love ? 'block' : 'none'"
+            color="warn"
+        (click)="delete(element.id)" </button>
+        </button>   -->
+          >
+          <mat-icon>delete</mat-icon>
+          <button mat-icon-button [style.display]="love ? 'block' : 'none'">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    </table>
+  </div>
 </div>

@@ -6,7 +6,7 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
 const routes: Routes = [
   { path: 'consultas', component: ConsultasComponent },
   { path: 'cadastrar', component: CadastrarComponent },
-  { path: '**', redirectTo: '/cadastrar' },
+  { path: '**', redirectTo: '/consultas', pathMatch: 'full' },
 ];
 
 @NgModule({
